@@ -23,7 +23,8 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SafeArea(child: Scaffold(
-      body: Center(
+        appBar: AppBar(title: Text('Notes App'),),
+        body: Center(
         child: Text('data'),
       )
     ));
