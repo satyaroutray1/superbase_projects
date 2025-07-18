@@ -33,6 +33,14 @@ migrate_working_dir/
 .pub/
 /build/
 
+
+
+build/
+ios/Flutter/Generated.xcconfig
+macos/Flutter/GeneratedPluginRegistrant.swift
+windows/flutter/generated_plugin_registrant.cc
+linux/flutter/generated_plugin_registrant.cc
+cmake-build-*/
 # Symbolication related
 app.*.symbols
 
