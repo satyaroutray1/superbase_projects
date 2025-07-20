@@ -43,11 +43,25 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+
+    final a = Supabase.instance.client.from('table1').stream(primaryKey: ['id']);
     return SafeArea(child: Scaffold(
         appBar: AppBar(title: Text('Notes App'),),
-        body: Center(
-          child: Text('data'),
-        ),
+        body: StreamBuilder(stream: a,
+            builder: (context, snapshot) {
+          if(snapshot.hasData){
+            final data = snapshot.data as List;
+            return ListView.builder(
+                itemCount: data.length,
+                itemBuilder: (context, index) {
+                  return ListTile(
+                    title: Text(data[index]['body']),
+                  );
+                }
+            );
+          }
+          return Container();
+        }),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           smartAlertDialog(context, _textEditingController);
