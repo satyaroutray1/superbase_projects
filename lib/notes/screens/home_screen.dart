@@ -57,8 +57,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   return GestureDetector(
                     onTap: () async{
                       print(data[index]['body']);
-                      await Supabase.instance.client.from('table1').//delete()
-                      update({'body':'updated data1'})
+                      await Supabase.instance.client.from('table1').delete()
+                      //update({'body':'updated data1'})
                       .eq('body', data[index]['body']);
                     },
                     child: ListTile(
