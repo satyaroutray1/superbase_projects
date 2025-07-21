@@ -1,16 +1,36 @@
-# superbase_projects
+📒 Supabase Notes App – Flutter
 
-Flutter Super
+A simple full-stack Flutter Notes App powered by Supabase. 
+Users can sign up, log in, create, edit and delete their personal notes. 
+All data is securely stored in a Postgres database with Row-Level Security.
 
-## Getting Started
+---
+📸 Screenshots
+<p align="center">
+  <img src="assets/images/notes_ss1.jpg" width="250" alt="screenshot1"/>
+  <img src="assets/images/notes_ss2.jpg" width="250" alt="screenshot1"/>
+  <img src="assets/images/notes_ss3.jpg" width="250" alt="screenshot1"/>
+  <img src="assets/images/notes_ss4.jpg" width="250" alt="screenshot1"/>
 
-This project is a starting point for a Flutter application.
+</p>
 
-A few resources to get you started if this is your first Flutter project:
+---
+🚀 Features
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+    🔐 Email-based Authentication (Supabase Auth)
+    📝 Create, Read, Update, Delete (CRUD) Notes
+    📅 Notes sorted by creation time
+    💾 Supabase Postgres for storage
+    📡 Realtime Sync
+    🧑 One user → only sees their own notes
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+🛠️ Tech Stack
+
+    Flutter – Frontend
+    Supabase – Backend-as-a-Service
+        Auth
+        Postgres Database
+        Row Level Security
+        Realtime (optional)
+---
+
