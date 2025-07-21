@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:superbase_projects/notes/screens/note_screen.dart';
 
@@ -31,9 +32,48 @@ class _HomeScreenState extends State<HomeScreen> {
                       //update({'body':'updated data1'})
                       .eq('body', data[index]['body']);
                     },
-                    child: ListTile(
-                      title: Text(data[index]['body']),
-                    ),
+                    child: Slidable(
+                      key: Key(data[index]['id'].toString()),
+                      startActionPane: ActionPane(
+                        motion:  ScrollMotion(),
+                        dismissible: DismissiblePane(onDismissed: () {}),
+                        children: [
+                          // A SlidableAction can have an icon and/or a label.
+                          SlidableAction(
+                            //onPressed: {},
+                            backgroundColor: Colors.red,
+                            foregroundColor: Colors.white,
+                            icon: Icons.delete,
+                            label: 'Delete',
+                            onPressed: (BuildContext context) {  },
+                          ),
+                          SlidableAction(
+                            onPressed: (BuildContext context) {  },
+                            backgroundColor: Colors.grey,
+                            foregroundColor: Colors.white,
+                            icon: Icons.edit,
+                            label: 'Edit',
+                          ),
+                        ],
+                      ),
+
+                      child: Card(
+                        child: Container(
+                          width: double.infinity,
+                          padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(data[index]['headline']??'', style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                              ),),
+                              Text(data[index]['body']),
+                          
+                            ],
+                          ),
+                        ),
+                      ),
+                    )
                   );
                 }
             );
