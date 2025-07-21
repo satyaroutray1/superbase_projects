@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class NoteScreen extends StatefulWidget {
-  const NoteScreen({super.key, required this.title});
-  final String title;
+  const NoteScreen({super.key});
 
   @override
   State<NoteScreen> createState() => _NoteScreenState();
@@ -18,15 +17,18 @@ class _NoteScreenState extends State<NoteScreen> {
   Widget build(BuildContext context) {
     return SafeArea(child: Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
+        title: Text('Add a Note'),
         actions: [
           IconButton(onPressed: () async{
-            await Supabase.instance.client.from('table1')
-                .insert(
-                {'body':_noteTextEditingController.text,
-                  'headline':_headlineTextEditingController.text}).then((value) {
-               Navigator.pop(context);
-            });
+
+              await Supabase.instance.client.from('table1')
+                  .insert(
+                  {'body': _noteTextEditingController.text,
+                    'headline': _headlineTextEditingController.text}).then((
+                  value) {
+                Navigator.pop(context);
+              });
+
           }, icon: Icon(Icons.save, color: Colors.black,))
         ],
       ),

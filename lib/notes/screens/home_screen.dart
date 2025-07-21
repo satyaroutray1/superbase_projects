@@ -3,6 +3,8 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:superbase_projects/notes/screens/note_screen.dart';
 
+import 'edit_note_screen.dart';
+
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
@@ -25,55 +27,54 @@ class _HomeScreenState extends State<HomeScreen> {
             return ListView.builder(
                 itemCount: data.length,
                 itemBuilder: (context, index) {
-                  return GestureDetector(
-                    onTap: () async{
-                      print(data[index]['body']);
-                      await Supabase.instance.client.from('table1').delete()
-                      //update({'body':'updated data1'})
-                      .eq('body', data[index]['body']);
-                    },
-                    child: Slidable(
-                      key: Key(data[index]['id'].toString()),
-                      startActionPane: ActionPane(
-                        motion:  ScrollMotion(),
-                        dismissible: DismissiblePane(onDismissed: () {}),
-                        children: [
-                          // A SlidableAction can have an icon and/or a label.
-                          SlidableAction(
-                            //onPressed: {},
-                            backgroundColor: Colors.red,
-                            foregroundColor: Colors.white,
-                            icon: Icons.delete,
-                            label: 'Delete',
-                            onPressed: (BuildContext context) {  },
-                          ),
-                          SlidableAction(
-                            onPressed: (BuildContext context) {  },
-                            backgroundColor: Colors.grey,
-                            foregroundColor: Colors.white,
-                            icon: Icons.edit,
-                            label: 'Edit',
-                          ),
-                        ],
-                      ),
+                  return  Slidable(
+                    key: Key(data[index]['id'].toString()),
+                    startActionPane: ActionPane(
+                      motion:  ScrollMotion(),
+                      dismissible: DismissiblePane(onDismissed: () {}),
+                      children: [
+                        SlidableAction(
+                          backgroundColor: Colors.red,
+                          foregroundColor: Colors.white,
+                          icon: Icons.delete,
+                          label: 'Delete',
+                          onPressed: (BuildContext context) async{
+                            await Supabase.instance.client.from('table1').delete()
+                                .eq('body', data[index]['body']);
+                          },
+                        ),
 
-                      child: Card(
-                        child: Container(
-                          width: double.infinity,
-                          padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(data[index]['headline']??'', style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                              ),),
-                              Text(data[index]['body']),
-                          
-                            ],
-                          ),
+                        SlidableAction(
+                          onPressed: (BuildContext context) {
+
+                            Navigator.push(context, MaterialPageRoute(builder: (context){
+                              return EditNoteScreen();
+                            }));
+                          },
+                          backgroundColor: Colors.grey,
+                          foregroundColor: Colors.white,
+                          icon: Icons.edit,
+                          label: 'Edit',
+                        ),
+                      ],
+                    ),
+
+                    child: Card(
+                      child: Container(
+                        width: double.infinity,
+                        padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(data[index]['headline']??'', style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                            ),),
+                            Text(data[index]['body']),
+
+                          ],
                         ),
                       ),
-                    )
+                    ),
                   );
                 }
             );
@@ -82,9 +83,8 @@ class _HomeScreenState extends State<HomeScreen> {
         }),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-         // smartAlertDialog(context, _textEditingController);
           Navigator.push(context, MaterialPageRoute(builder: (context){
-            return NoteScreen(title: 'Write a Note',);
+            return NoteScreen();
           }));
       }, child: Icon(Icons.add),),
     ));
