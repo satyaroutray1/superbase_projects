@@ -54,8 +54,16 @@ class _HomeScreenState extends State<HomeScreen> {
             return ListView.builder(
                 itemCount: data.length,
                 itemBuilder: (context, index) {
-                  return ListTile(
-                    title: Text(data[index]['body']),
+                  return GestureDetector(
+                    onTap: () async{
+                      print(data[index]['body']);
+                      await Supabase.instance.client.from('table1').//delete()
+                      update({'body':'updated data1'})
+                      .eq('body', data[index]['body']);
+                    },
+                    child: ListTile(
+                      title: Text(data[index]['body']),
+                    ),
                   );
                 }
             );
