@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:intl/intl.dart';
@@ -15,6 +17,15 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
 
+  Color getRandomColor() {
+    final Random random = Random();
+    return Color.fromARGB(
+      255, // full opacity
+      random.nextInt(256), // red: 0–255
+      random.nextInt(256), // green
+      random.nextInt(256), // blue
+    );
+  }
   @override
   Widget build(BuildContext context) {
 
@@ -65,18 +76,32 @@ class _HomeScreenState extends State<HomeScreen> {
                     child: Card(
                       child: Container(
                         width: double.infinity,
-                        padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
+                        padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
+                        decoration: BoxDecoration(
+                          color: getRandomColor().withOpacity(.1),
+                          borderRadius: BorderRadius.circular(10),
+                          border: Border.all(
+                            color: Colors.black,
+                            width: 1,
+                          ),
+                        ),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(data[index]['headline']??'', style: TextStyle(
                               fontWeight: FontWeight.bold,
                             ),),
+                            SizedBox(
+                              height: 10,
+                            ),
                             Text(data[index]['body']),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.end,
                               children: [
-                                Text(DateFormat('dd MMM yyyy, hh:mm a').format(DateTime.parse(data[index]['created_at'])))
+                                Text(DateFormat('dd MMM yyyy, hh:mm a').format(DateTime.parse(data[index]['created_at'])),
+                                style: TextStyle(
+                                  color: Colors.grey
+                                ),)
                               ],
                             )
 
@@ -92,11 +117,12 @@ class _HomeScreenState extends State<HomeScreen> {
           return Container();
         }),
       floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.black,
         onPressed: () {
           Navigator.push(context, MaterialPageRoute(builder: (context){
             return NoteScreen();
           }));
-      }, child: Icon(Icons.add),),
+      }, child: Icon(Icons.add, color: Colors.white,),),
     ));
   }
 }
