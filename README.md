@@ -7,10 +7,10 @@ All data is securely stored in a Postgres database with Row-Level Security.
 ---
 📸 Screenshots
 <p align="center">
-  <img src="assets/images/notes_ss1.jpg" width="250" alt="screenshot1"/>
-  <img src="assets/images/notes_ss2.jpg" width="250" alt="screenshot1"/>
-  <img src="assets/images/notes_ss3.jpg" width="250" alt="screenshot1"/>
-  <img src="assets/images/notes_ss4.jpg" width="250" alt="screenshot1"/>
+  <img src="assets/images/notes_ss1.jpg" width="150" alt="screenshot1"/>
+  <img src="assets/images/notes_ss2.jpg" width="150" alt="screenshot1"/>
+  <img src="assets/images/notes_ss3.jpg" width="150" alt="screenshot1"/>
+  <img src="assets/images/notes_ss4.jpg" width="150" alt="screenshot1"/>
 
 </p>
 
