@@ -54,3 +54,12 @@ app.*.map.json
 
 # .gitignore
 .env
+
+
+# Ignore Android and iOS native code from language stats
+android/** linguist-vendored
+ios/** linguist-vendored
+macos/** linguist-vendored
+windows/** linguist-vendored
+linux/** linguist-vendored
+build/** linguist-generated
