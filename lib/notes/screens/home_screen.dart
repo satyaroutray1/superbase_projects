@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:superbase_projects/notes/screens/note_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -9,37 +10,6 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  final TextEditingController _textEditingController = TextEditingController();
-
-  Future<Future> smartAlertDialog(BuildContext context, TextEditingController textFieldController) async {
-    return showDialog(
-        context: context,
-        builder: (ctx) =>
-            AlertDialog(
-              title: Text('To Do Task'),
-              content: TextField(
-                controller: textFieldController,
-                decoration: InputDecoration(
-                    hintText: "Task"),
-              ),
-              actions: <Widget>[
-                TextButton(
-                  child: Text('CANCEL'),
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                ),
-                TextButton(
-                  child: Text('OK'),
-                  onPressed: () async{
-                    Navigator.pop(context);
-                    await Supabase.instance.client.from('table1').insert({'body':_textEditingController.text});
-
-                  },
-                ),
-              ],
-            ));
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -72,7 +42,10 @@ class _HomeScreenState extends State<HomeScreen> {
         }),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          smartAlertDialog(context, _textEditingController);
+         // smartAlertDialog(context, _textEditingController);
+          Navigator.push(context, MaterialPageRoute(builder: (context){
+            return NoteScreen(title: 'Write a Note',);
+          }));
       }, child: Icon(Icons.add),),
     ));
   }
