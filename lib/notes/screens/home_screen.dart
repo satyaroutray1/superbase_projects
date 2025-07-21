@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:intl/intl.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:superbase_projects/notes/screens/note_screen.dart';
 
@@ -49,7 +50,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
                             Navigator.push(context, MaterialPageRoute(builder: (context){
                               return EditNoteScreen(id: data[index]['id'].toString(),
-                                headline: data[index]['headline'],
+                                headline: data[index]['headline'] ?? '',
                                 note: data[index]['body'],);
                             }));
                           },
@@ -72,6 +73,13 @@ class _HomeScreenState extends State<HomeScreen> {
                               fontWeight: FontWeight.bold,
                             ),),
                             Text(data[index]['body']),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                Text(DateFormat('dd MMM yyyy, hh:mm a').format(DateTime.parse(data[index]['created_at'])))
+                              ],
+                            )
+
 
                           ],
                         ),
