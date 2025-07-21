@@ -43,6 +43,7 @@ class _NoteScreenState extends State<NoteScreen> {
               hintText: 'Write a Headline...',
               enabledBorder: InputBorder.none,
               contentPadding: EdgeInsets.all(16),
+              labelText: 'Headline',
             ),
             style: TextStyle(fontSize: 16),
 
@@ -60,6 +61,7 @@ class _NoteScreenState extends State<NoteScreen> {
               hintText: 'Start typing your note...',
               border: InputBorder.none,
               contentPadding: EdgeInsets.all(16),
+              labelText: 'Notes',
             ),
             style: TextStyle(fontSize: 16),
           ),

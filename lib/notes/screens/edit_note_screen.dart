@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class EditNoteScreen extends StatefulWidget {
-  const EditNoteScreen({super.key});
+  const EditNoteScreen({super.key, required this.id, required this.headline, required this.note});
+  final String id, headline, note;
 
   @override
   State<EditNoteScreen> createState() => _EditNoteScreenState();
@@ -10,8 +11,15 @@ class EditNoteScreen extends StatefulWidget {
 
 class _EditNoteScreenState extends State<EditNoteScreen> {
 
-  final TextEditingController _headlineTextEditingController = TextEditingController();
-  final TextEditingController _noteTextEditingController = TextEditingController();
+  late final TextEditingController _headlineTextEditingController;
+  late final TextEditingController _noteTextEditingController;
+
+  @override
+  void initState() {
+    super.initState();
+    _headlineTextEditingController = TextEditingController(text: widget.headline);
+    _noteTextEditingController = TextEditingController(text: widget.note);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -20,12 +28,11 @@ class _EditNoteScreenState extends State<EditNoteScreen> {
           title: Text('Edit Note'),
           actions: [
             IconButton(onPressed: () async{
-                // await Supabase.instance.client.from('table1')
-                //     .update({'body':_noteTextEditingController.text,
-                //   'headline':_headlineTextEditingController.text})
-                //     .eq('body', data[index]['body']);
-                // Navigator.pop(context);
-
+                await Supabase.instance.client.from('table1')
+                    .update({'body':_noteTextEditingController.text,
+                  'headline':_headlineTextEditingController.text})
+                    .eq('id', widget.id);
+                Navigator.pop(context);
 
             }, icon: Icon(Icons.save, color: Colors.black,))
           ],
@@ -34,13 +41,14 @@ class _EditNoteScreenState extends State<EditNoteScreen> {
         body: Column(
           children: [
             TextField(
-              controller: _headlineTextEditingController,
+              controller: _headlineTextEditingController ,
               maxLines: null,
               keyboardType: TextInputType.text,
               decoration: InputDecoration(
                 hintText: 'Write a Headline...',
                 enabledBorder: InputBorder.none,
                 contentPadding: EdgeInsets.all(16),
+                labelText: 'Headline',
               ),
               style: TextStyle(fontSize: 16),
 
@@ -58,6 +66,7 @@ class _EditNoteScreenState extends State<EditNoteScreen> {
                 hintText: 'Start typing your note...',
                 border: InputBorder.none,
                 contentPadding: EdgeInsets.all(16),
+                labelText: 'Notes',
               ),
               style: TextStyle(fontSize: 16),
             ),

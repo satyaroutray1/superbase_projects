@@ -48,7 +48,9 @@ class _HomeScreenState extends State<HomeScreen> {
                           onPressed: (BuildContext context) {
 
                             Navigator.push(context, MaterialPageRoute(builder: (context){
-                              return EditNoteScreen();
+                              return EditNoteScreen(id: data[index]['id'].toString(),
+                                headline: data[index]['headline'],
+                                note: data[index]['body'],);
                             }));
                           },
                           backgroundColor: Colors.grey,
