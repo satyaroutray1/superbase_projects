@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:intl/intl.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:superbase_projects/notes/screens/login_screen.dart';
 import 'package:superbase_projects/notes/screens/note_screen.dart';
 
 import 'edit_note_screen.dart';
@@ -103,8 +104,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   color: Colors.grey
                                 ),)
                               ],
-                            )
-
+                            ),
 
                           ],
                         ),

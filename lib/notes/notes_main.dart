@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:superbase_projects/notes/screens/account_screen.dart';
 import 'package:superbase_projects/notes/screens/home_screen.dart';
+import 'package:superbase_projects/notes/screens/login_screen.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
@@ -29,7 +31,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Notes App',
-      home: HomeScreen(),
+      home: supabase.auth.currentSession == null
+          ? const LoginPage()
+          : const HomeScreen(),
       debugShowCheckedModeBanner: false,
     );
   }
