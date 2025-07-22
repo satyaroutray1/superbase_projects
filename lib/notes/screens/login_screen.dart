@@ -82,22 +82,26 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Sign In')),
-      body: ListView(
-        padding: const EdgeInsets.symmetric(vertical: 18, horizontal: 12),
-        children: [
-          const Text('Sign in via the magic link with your email below'),
-          const SizedBox(height: 18),
-          TextFormField(
-            controller: _emailController,
-            decoration: const InputDecoration(labelText: 'Email'),
-          ),
-          const SizedBox(height: 18),
-          ElevatedButton(
-            onPressed: _isLoading ? null : _signIn,
-            child: Text(_isLoading ? 'Sending...' : 'Send Magic Link'),
-          ),
-        ],
+      appBar: AppBar(title: const Text('Sign In'),
+        backgroundColor: Colors.black45,
+      ),
+      body: SafeArea(
+        child: ListView(
+          padding: const EdgeInsets.symmetric(vertical: 18, horizontal: 12),
+          children: [
+            const Text('Sign in via the magic link with your email below'),
+            const SizedBox(height: 18),
+            TextFormField(
+              controller: _emailController,
+              decoration: const InputDecoration(labelText: 'Email'),
+            ),
+            const SizedBox(height: 18),
+            ElevatedButton(
+              onPressed: _isLoading ? null : _signIn,
+              child: Text(_isLoading ? 'Sending...' : 'Send Magic Link'),
+            ),
+          ],
+        ),
       ),
     );
   }

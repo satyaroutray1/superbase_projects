@@ -23,7 +23,7 @@ class _EditNoteScreenState extends State<EditNoteScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(child: Scaffold(
+    return Scaffold(
         appBar: AppBar(
           title: Text('Edit Note'),
           actions: [
@@ -36,44 +36,47 @@ class _EditNoteScreenState extends State<EditNoteScreen> {
 
             }, icon: Icon(Icons.save, color: Colors.black,))
           ],
+          backgroundColor: Colors.black45,
         ),
 
-        body: SingleChildScrollView(
-          child: Column(
-            children: [
-              TextField(
-                controller: _headlineTextEditingController ,
-                maxLines: null,
-                keyboardType: TextInputType.text,
-                decoration: InputDecoration(
-                  hintText: 'Write a Headline...',
-                  enabledBorder: InputBorder.none,
-                  contentPadding: EdgeInsets.all(16),
-                  labelText: 'Headline',
+        body: SafeArea(
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                TextField(
+                  controller: _headlineTextEditingController ,
+                  maxLines: null,
+                  keyboardType: TextInputType.text,
+                  decoration: InputDecoration(
+                    hintText: 'Write a Headline...',
+                    enabledBorder: InputBorder.none,
+                    contentPadding: EdgeInsets.all(16),
+                    labelText: 'Headline',
+                  ),
+                  style: TextStyle(fontSize: 16),
+
                 ),
-                style: TextStyle(fontSize: 16),
-          
-              ),
-              Container(
-                height: 1,
-                width: double.infinity,
-                color: Colors.grey,
-              ),
-              TextField(
-                controller: _noteTextEditingController,
-                maxLines: null,
-                keyboardType: TextInputType.multiline,
-                decoration: InputDecoration(
-                  hintText: 'Start typing your note...',
-                  border: InputBorder.none,
-                  contentPadding: EdgeInsets.all(16),
-                  labelText: 'Notes',
+                Container(
+                  height: 1,
+                  width: double.infinity,
+                  color: Colors.grey,
                 ),
-                style: TextStyle(fontSize: 16),
-              ),
-            ],
+                TextField(
+                  controller: _noteTextEditingController,
+                  maxLines: null,
+                  keyboardType: TextInputType.multiline,
+                  decoration: InputDecoration(
+                    hintText: 'Start typing your note...',
+                    border: InputBorder.none,
+                    contentPadding: EdgeInsets.all(16),
+                    labelText: 'Notes',
+                  ),
+                  style: TextStyle(fontSize: 16),
+                ),
+              ],
+            ),
           ),
         )
-    ));
+    );
   }
 }
