@@ -43,6 +43,7 @@ class MyApp extends StatelessWidget {
   }
 }
 
+
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
 
@@ -68,15 +69,15 @@ class _State<HomePage> extends State{
         kIsWeb ? null : 'io.supabase.flutterquickstart://login-callback/',
       );
       if (mounted) {
-        context.showSnackBar('Check your email for a login link!');
+        ContextExtension(context).showSnackBar('Check your email for a login link!');
 
         _emailController.clear();
       }
     } on AuthException catch (error) {
-      if (mounted) context.showSnackBar(error.message, isError: true);
+      if (mounted) ContextExtension(context).showSnackBar(error.message, isError: true);
     } catch (error) {
       if (mounted) {
-        context.showSnackBar('Unexpected error occurred', isError: true);
+        ContextExtension(context).showSnackBar('Unexpected error occurred', isError: true);
       }
     } finally {
       if (mounted) {
@@ -102,9 +103,9 @@ class _State<HomePage> extends State{
       },
       onError: (error) {
         if (error is AuthException) {
-          context.showSnackBar(error.message, isError: true);
+          ContextExtension(context).showSnackBar(error.message, isError: true);
         } else {
-          context.showSnackBar('Unexpected error occurred', isError: true);
+          ContextExtension(context).showSnackBar('Unexpected error occurred', isError: true);
         }
       },
     );
