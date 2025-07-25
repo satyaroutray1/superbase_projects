@@ -115,4 +115,5 @@ extension ContextExtension on BuildContext {
             ? Theme.of(this).colorScheme.error
             : Theme.of(this).snackBarTheme.backgroundColor,
       ),);
-  }}
+  }
+}
